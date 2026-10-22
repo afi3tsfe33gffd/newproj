@@ -126,7 +126,7 @@
       },
       "settings": {
         "auth": "noauth",
-        "udp": false,
+        "udp": true,
         "allowTransparent": false
       }
     }
@@ -16839,7 +16839,7 @@
     ]
   },
   "metrics": {
-    "listen": "127.0.0.1:10813"
+    "listen": "127.0.0.1:60363"
   },
   "policy": {
     "levels": {
