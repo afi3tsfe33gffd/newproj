@@ -2,6 +2,21 @@
   "log": {
     "loglevel": "warning"
   },
+    "dns": {
+    "tag": "dns_inbound",
+    "servers": [
+      "1.1.1.1",
+      "9.9.9.9"
+    ],
+    "queryStrategy": "UseIP",
+    "disableCache": false,
+    "disableFallback": false,
+    "disableFallbackIfMatch": false,
+    "enableParallelQuery": false,
+    "useSystemHosts": false,
+    "serveStale": false,
+    "serveExpiredTTL": 0
+    },
   "inbounds": [
     {
       "tag": "socks",
