@@ -33,7 +33,7 @@
       },
       "protocol": "vless",
       "settings": {
-        "address": "177.66.0.243",
+        "address": "162.159.152.4",
         "encryption": "none",
         "flow": "",
         "id": "5850796b-ff4f-4325-8cc8-ac89c010d65a",
@@ -85,7 +85,7 @@
           "serverName": "T6avnbu2HUlOMHodm2LZhC.pAgEs.DEV"
         },
         "wsSettings": {
-          "host": "T6avnbu2HUlOMHodm2LZhC.pAgEs.DEV",
+          "host": "",
           "path": "/vl/aw32bJn5hjWXm3apv19g0a4h4K1?ed=2560"
         }
       },
