@@ -62,6 +62,83 @@
                         "users": [
                             {
                                 "encryption": "none",
+                                "id": "0264c953-a1e7-43aa-aff0-4337b249a438"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "streamSettings": {
+                "finalmask": {
+                    "tcp": [
+                        {
+                            "settings": {
+                                "delays": [
+                                    "0"
+                                ],
+                                "lengths": [
+                                    "0",
+                                    "104",
+                                    "1"
+                                ],
+                                "maxSplit": "0",
+                                "packets": "tlshello"
+                            },
+                            "type": "fragment"
+                        },
+                        {
+                            "settings": {
+                                "delays": [
+                                    "1"
+                                ],
+                                "lengths": [
+                                    "114",
+                                    "1"
+                                ],
+                                "maxSplit": "11",
+                                "packets": "1-1"
+                            },
+                            "type": "fragment"
+                        }
+                    ]
+                },
+                "network": "ws",
+                "security": "tls",
+                "sockopt": {
+                    "domainStrategy": "UseIP",
+                    "happyEyeballs": {
+                        "interleave": 2,
+                        "maxConcurrentTry": 4,
+                        "prioritizeIPv6": false,
+                        "tryDelayMs": 250
+                    },
+                    "tcpFastOpen": true
+                },
+                "tlsSettings": {
+                    "alpn": [
+                        "http/1.1"
+                    ],
+                    "cipherSuites": "TLS_AES_256_GCM_SHA384:TLS_CHACHA20_POLY1305_SHA256:TLS_AES_128_GCM_SHA256:TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384:TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384:TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256:TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256:TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256:TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256:TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA:TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA:TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256:TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256",
+                    "fingerprint": "unsafe",
+                    "serverName": "holly-treatments-pearl-seasonal.trycloudflare.com"
+                },
+                "wsSettings": {
+                    "host": "",
+                    "path": "/api"
+                }
+            },
+            "tag": "proxy"
+        },
+        {
+            "protocol": "vless",
+            "settings": {
+                "vnext": [
+                    {
+                        "address": "104.24.196.20",
+                        "port": 443,
+                        "users": [
+                            {
+                                "encryption": "none",
                                 "id": "734174a6-f838-4cda-95cd-a1b2268daa04"
                             }
                         ]
@@ -127,7 +204,7 @@
                     "path": "/79b8c86e10ec/proxyip=194.154.24.208"
                 }
             },
-            "tag": "proxy"
+            "tag": "proxy1"
         },
         {
             "protocol": "dns",
