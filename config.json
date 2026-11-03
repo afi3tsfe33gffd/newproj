@@ -1,281 +1,254 @@
 {
-    "dns": {
-        "hosts": {
-            "dns.quad9.net": [
-                "9.9.9.9",
-                "149.112.112.112"
-            ]
-        },
-        "queryStrategy": "UseIP",
-        "servers": [
-            "fakedns",
-            {
-                "address": "https://dns.quad9.net/dns-query",
-                "tag": "remote-dns"
-            }
-        ],
-        "tag": "dns"
-    },
-    "inbounds": [
-        {
-            "listen": "127.0.0.1",
-            "port": 1820,
-            "protocol": "mixed",
-            "settings": {
-                "auth": "noauth",
-                "udp": true
-            },
-            "sniffing": {
-                "destOverride": [
-                    "http",
-                    "tls",
-                    "fakedns"
-                ],
-                "enabled": true,
-                "routeOnly": true
-            },
-            "tag": "mixed-in"
-        },
-        {
-            "listen": "127.0.0.1",
-            "port": 10853,
-            "protocol": "dokodemo-door",
-            "settings": {
-                "address": "1.1.1.1",
-                "network": "tcp,udp",
-                "port": 53
-            },
-            "tag": "dns-in"
-        }
-    ],
-    "log": {
-        "loglevel": "warning"
-    },
-    "outbounds": [
-        {
-            "protocol": "vless",
-            "settings": {
-                "vnext": [
-                    {
-                        "address": "medium.com",
-                        "port": 443,
-                        "users": [
-                            {
-                                "encryption": "none",
-                                "id": "0264c953-a1e7-43aa-aff0-4337b249a438"
-                            }
-                        ]
-                    }
-                ]
-            },
-            "streamSettings": {
-                "finalmask": {
-                    "tcp": [
-                        {
-                            "settings": {
-                                "delays": [
-                                    "0"
-                                ],
-                                "lengths": [
-                                    "0",
-                                    "104",
-                                    "1"
-                                ],
-                                "maxSplit": "0",
-                                "packets": "tlshello"
-                            },
-                            "type": "fragment"
-                        },
-                        {
-                            "settings": {
-                                "delays": [
-                                    "1"
-                                ],
-                                "lengths": [
-                                    "114",
-                                    "1"
-                                ],
-                                "maxSplit": "11",
-                                "packets": "1-1"
-                            },
-                            "type": "fragment"
-                        }
-                    ]
-                },
-                "network": "ws",
-                "security": "tls",
-                "sockopt": {
-                    "domainStrategy": "UseIP",
-                    "happyEyeballs": {
-                        "interleave": 2,
-                        "maxConcurrentTry": 4,
-                        "prioritizeIPv6": false,
-                        "tryDelayMs": 250
-                    },
-                    "tcpFastOpen": true
-                },
-                "tlsSettings": {
-                    "alpn": [
-                        "http/1.1"
-                    ],
-                    "cipherSuites": "TLS_AES_256_GCM_SHA384:TLS_CHACHA20_POLY1305_SHA256:TLS_AES_128_GCM_SHA256:TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384:TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384:TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256:TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256:TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256:TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256:TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA:TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA:TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256:TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256",
-                    "fingerprint": "unsafe",
-                    "serverName": "hardcover-unwrap-limits-africa.trycloudflare.com"
-                },
-                "wsSettings": {
-                    "host": "",
-                    "path": "/api"
-                }
-            },
-            "tag": "proxy"
-        },
-        {
-            "protocol": "vless",
-            "settings": {
-                "vnext": [
-                    {
-                        "address": "104.24.196.20",
-                        "port": 443,
-                        "users": [
-                            {
-                                "encryption": "none",
-                                "id": "734174a6-f838-4cda-95cd-a1b2268daa04"
-                            }
-                        ]
-                    }
-                ]
-            },
-            "streamSettings": {
-                "finalmask": {
-                    "tcp": [
-                        {
-                            "settings": {
-                                "delays": [
-                                    "0"
-                                ],
-                                "lengths": [
-                                    "0",
-                                    "104",
-                                    "1"
-                                ],
-                                "maxSplit": "0",
-                                "packets": "tlshello"
-                            },
-                            "type": "fragment"
-                        },
-                        {
-                            "settings": {
-                                "delays": [
-                                    "1"
-                                ],
-                                "lengths": [
-                                    "114",
-                                    "1"
-                                ],
-                                "maxSplit": "11",
-                                "packets": "1-1"
-                            },
-                            "type": "fragment"
-                        }
-                    ]
-                },
-                "network": "ws",
-                "security": "tls",
-                "sockopt": {
-                    "domainStrategy": "UseIP",
-                    "happyEyeballs": {
-                        "interleave": 2,
-                        "maxConcurrentTry": 4,
-                        "prioritizeIPv6": false,
-                        "tryDelayMs": 250
-                    },
-                    "tcpFastOpen": true
-                },
-                "tlsSettings": {
-                    "alpn": [
-                        "http/1.1"
-                    ],
-                    "cipherSuites": "TLS_AES_256_GCM_SHA384:TLS_CHACHA20_POLY1305_SHA256:TLS_AES_128_GCM_SHA256:TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384:TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384:TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256:TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256:TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256:TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256:TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA:TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA:TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256:TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256",
-                    "fingerprint": "unsafe",
-                    "serverName": "azure-dawn-2429-139ca17b.pages.dev"
-                },
-                "wsSettings": {
-                    "host": "azure-dawn-2429-139ca17b.pages.dev",
-                    "path": "/79b8c86e10ec/proxyip=194.154.24.208"
-                }
-            },
-            "tag": "proxy1"
-        },
-        {
-            "protocol": "dns",
-            "settings": {
-                "rules": [
-                    {
-                        "action": "hijack"
-                    }
-                ]
-            },
-            "tag": "dns-out"
-        },
-        {
-            "protocol": "freedom",
-            "settings": {
-                "domainStrategy": "UseIP"
-            },
-            "tag": "direct"
-        },
-        {
-            "protocol": "blackhole",
-            "settings": {
-                "response": {
-                    "type": "http"
-                }
-            },
-            "tag": "block"
-        }
-    ],
-    "routing": {
-        "domainStrategy": "IPIfNonMatch",
-        "rules": [
-            {
-                "inboundTag": [
-                    "mixed-in"
-                ],
-                "outboundTag": "dns-out",
-                "port": 53,
-                "type": "field"
-            },
-            {
-                "inboundTag": [
-                    "dns-in"
-                ],
-                "outboundTag": "dns-out",
-                "type": "field"
-            },
-            {
-                "inboundTag": [
-                    "remote-dns"
-                ],
-                "outboundTag": "proxy",
-                "type": "field"
-            },
-            {
-                "inboundTag": [
-                    "dns"
-                ],
-                "outboundTag": "direct",
-                "type": "field"
-            },
-            {
-                "network": "udp",
-                "outboundTag": "block",
-                "type": "field"
-            },
-            {
-                "network": "tcp",
-                "outboundTag": "proxy",
-                "type": "field"
-            }
-        ]
+  "__Credits__": {
+    "creator": "@patterniha",
+    "donate1": "USDT (BEP20): 0x76a768B53Ca77B43086946315f0BDF21156bF424",
+    "donate2": "USDT (TRC20): TU5gKvKqcXPn8itp1DouBCwcqGHMemBm8o",
+    "donate3": "TON (TON): UQAc-mZB3y7uxWHKiMmq0ORZEYgycWDWZ4V1k73HsXvTJx-i"
+  },
+
+
+  "remarks": "Serverless-v53-fragA",
+
+  "version": {
+    "min": "26.11.1"
+  },
+
+  "log": {
+    "loglevel": "warning", "dnsLog": false, "access": "none"
+  },
+
+  "policy": {
+    "levels": {
+      "0": {
+        "uplinkOnly": 0,
+        "downlinkOnly": 0
+      },
+      "12": {
+        "uplinkOnly": 0,
+        "downlinkOnly": 0,
+        "connIdle": 12
+      }
     }
+  },
+
+  "dns":{
+    "hosts": {
+      "geosite:category-ads-all": "#3",
+      "cloudflare-dns.com": "challenges.cloudflare.com"
+    },
+    "servers": [
+      {
+        "address": "fakedns",
+        "domains": ["domain:ir", "geosite:private", "geosite:category-ir", "geosite:xai", "geosite:openai", "geosite:google-deepmind", "geosite:anthropic", "geosite:github", "geosite:microsoft", "geosite:golang", "geosite:python", "geosite:rust", "full:challenges.cloudflare.com"]
+      },
+      {
+        "tag": "no-filter-dns",
+        "address": "https://cloudflare-dns.com/dns-query",
+        "timeoutMs": 12000,
+        "finalQuery": true
+      },
+      {
+        "tag": "domestic-dns",
+        "address": "localhost",
+        "domains": ["domain:ir", "geosite:private", "geosite:category-ir", "geosite:xai", "geosite:openai", "geosite:google-deepmind", "geosite:anthropic", "geosite:github", "geosite:microsoft", "geosite:golang", "geosite:python", "geosite:rust", "full:challenges.cloudflare.com"],
+        "timeoutMs": 12000,
+        "finalQuery": true
+      }
+    ],
+    "queryStrategy": "UseSystem",
+    "useSystemHosts": true,
+	"serveStale": true
+  },
+
+  "inbounds": [
+    {
+      "tag": "mixed-in",
+      "port": 1820,
+      "protocol": "mixed",
+      "sniffing": {
+        "enabled": true,
+        "destOverride": ["fakedns", "tls", "http", "quic"],
+        "routeOnly": false
+      },
+      "settings": {
+        "udp": true,
+        "ip": "127.0.0.1"
+      },
+      "streamSettings": {
+        "sockopt": {
+          "tcpKeepAliveInterval": 1,
+          "tcpKeepAliveIdle": 11
+        }
+      }
+    }
+  ],
+
+  "outbounds": [
+    {
+      "tag": "block",
+      "protocol": "block"
+    },
+    {
+      "tag": "tcp-direct",
+      "protocol": "direct",
+      "streamSettings": {
+        "sockopt": {
+          "domainStrategy": "ForceIP",
+          "happyEyeballs": {"tryDelayMs": 300, "prioritizeIPv6": true, "interleave": 4, "maxConcurrentTry": 20}
+        }
+      }
+    },
+	{
+      "tag": "udp-direct",
+      "protocol": "direct",
+      "streamSettings": {
+        "sockopt": {
+          "domainStrategy": "ForceIPv6v4"
+		}
+	  }	
+	},
+    {
+      "tag": "dns-out",
+      "protocol": "dns",
+      "settings": {
+        "userLevel": 12
+      }
+    },
+    {
+      "tag": "tcp-fragment",
+      "protocol": "direct",
+      "streamSettings": {
+        "finalmask": {
+          "tcp": [
+            {"type": "fragment", "settings": {"packets": "1-1", "lengths": ["1"], "delays": ["1"], "maxSplit": "201"}}
+          ]
+        },
+        "sockopt": {
+          "domainStrategy": "ForceIP",
+          "happyEyeballs": {"tryDelayMs": 300, "prioritizeIPv6": true, "interleave": 4, "maxConcurrentTry": 20}
+        }
+      }
+    },
+    {
+      "tag": "tcp-fragment-tls",
+      "protocol": "direct",
+      "streamSettings": {
+        "finalmask": {
+          "tcp": [
+			{"type": "fragment", "settings": {"packets": "tlshello", "lengths": ["6", "98", "1"], "delays": ["0"], "maxSplit": "0"}},
+            {"type": "fragment", "settings": {"packets": "1-1", "lengths": ["114", "1"], "delays": ["1"], "maxSplit": "11"}}
+          ]
+        },
+        "sockopt": {
+          "domainStrategy": "ForceIP",
+          "happyEyeballs": {"tryDelayMs": 300, "prioritizeIPv6": true, "interleave": 4, "maxConcurrentTry": 20}
+        }
+      }
+    },
+    {
+      "tag": "udp-noises",
+      "protocol": "direct",
+      "streamSettings": {
+		"sockopt": {
+          "domainStrategy": "ForceIPv6v4"
+		},
+        "finalmask": {
+          "udp": [
+            {
+              "type": "noise",
+              "settings": {
+                "reset": "28",
+                "noise": [
+                  {"rand": "1200-1230", "delay": "10"}, {"rand": "1200-1230", "delay": "10"}, {"rand": "1200-1230", "delay": "10"},
+                  {"rand": "1200-1230", "delay": "10"}, {"rand": "1200-1230", "delay": "10"}, {"rand": "1200-1230", "delay": "10"},
+                  {"rand": "1200-1230", "delay": "10"}, {"rand": "1200-1230", "delay": "10"}, {"rand": "1200-1230", "delay": "10"},
+                  {"rand": "1200-1230", "delay": "10"}, {"rand": "1200-1230", "delay": "10"}, {"rand": "1200-1230", "delay": "10"},
+                  {"rand": "1200-1230", "delay": "10"}, {"rand": "1200-1230", "delay": "10"}, {"rand": "1200-1230", "delay": "10"},
+                  {"rand": "1200-1230", "delay": "10"}, {"rand": "1200-1230", "delay": "10"}, {"rand": "1200-1230", "delay": "10"},
+                  {"rand": "1200-1230", "delay": "10"}, {"rand": "1200-1230", "delay": "10"}, {"rand": "1200-1230", "delay": "10"},
+                  {"rand": "1200-1230", "delay": "10"}, {"rand": "1200-1230", "delay": "10"}, {"rand": "1200-1230", "delay": "10"}
+                ]
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+
+  "routing": {
+    "domainStrategy": "IPOnDemand",
+    "rules": [
+      {
+        "outboundTag": "block",
+        "domain": ["geosite:category-ads-all"]
+      },
+      {
+        "outboundTag": "tcp-direct",
+        "inboundTag": ["domestic-dns"],
+        "network": "tcp"
+      },
+      {
+        "outboundTag": "udp-direct",
+        "inboundTag": ["domestic-dns"],
+        "network": "udp"
+      },
+      {
+        "outboundTag": "tcp-fragment-tls",
+        "inboundTag": ["no-filter-dns"]
+      },
+      {
+        "outboundTag": "dns-out",
+        "port": 53
+      },
+      {
+        "outboundTag": "tcp-direct",
+        "network": "tcp", "domain": ["domain:ir", "geosite:private", "geosite:category-ir", "geosite:xai", "geosite:openai", "geosite:google-deepmind", "geosite:anthropic", "geosite:github", "geosite:microsoft", "geosite:golang", "geosite:python", "geosite:rust"]
+      },
+	  {
+        "outboundTag": "udp-direct",
+        "network": "udp", "domain": ["domain:ir", "geosite:private", "geosite:category-ir", "geosite:xai", "geosite:openai", "geosite:google-deepmind", "geosite:anthropic", "geosite:github", "geosite:microsoft", "geosite:golang", "geosite:python", "geosite:rust"]
+      },
+      {
+        "outboundTag": "block",
+        "ip": ["10.10.34.0/24", "2001:4188:2:600::/64"]
+      },
+      {
+        "outboundTag": "tcp-direct",
+        "network": "tcp", "ip": ["geoip:private", "geoip:ir"]
+      },
+	  {
+        "outboundTag": "udp-direct",
+        "network": "udp", "ip": ["geoip:private", "geoip:ir"]
+      },
+      {
+        "outboundTag": "block",
+        "network": "udp", "protocol": ["quic"], "ip": ["0.0.0.0/0", "::/0"]
+      },
+      {
+        "outboundTag": "block",
+        "network": "udp", "port": "443", "ip": ["0.0.0.0/0", "::/0"]
+      },
+      {
+        "outboundTag": "udp-direct",
+        "network": "udp", "ip": ["0.0.0.0/0", "::/0"]
+      },
+      {
+        "outboundTag": "tcp-fragment-tls",
+        "network": "tcp", "protocol": ["tls"], "ip": ["0.0.0.0/0", "::/0"]
+      },
+      {
+        "outboundTag": "tcp-fragment-tls",
+        "network": "tcp", "port": "443", "ip": ["0.0.0.0/0", "::/0"]
+      },
+      {
+        "outboundTag": "tcp-direct",
+        "network": "tcp", "ip": ["0.0.0.0/0", "::/0"]
+      },
+      {
+        "outboundTag": "block",
+        "port": "0-65535"
+      }
+    ]
+  }
 }
