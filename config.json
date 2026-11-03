@@ -63,7 +63,7 @@
   "inbounds": [
     {
       "tag": "mixed-in",
-      "port": 10808,
+      "port": 1820,
       "protocol": "mixed",
       "sniffing": {
         "enabled": true,
