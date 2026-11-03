@@ -14,7 +14,7 @@
   },
 
   "log": {
-    "loglevel": "warning", "dnsLog": false, "access": "none"
+    "loglevel": "none", "dnsLog": false, "access": "none"
   },
 
   "policy": {
